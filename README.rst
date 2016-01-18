@@ -1,3 +1,7 @@
+.. image:: image/logo.png
+   :align: center
+
+
 INTRODUCTION
 --------
 
