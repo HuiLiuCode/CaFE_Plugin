@@ -14,13 +14,13 @@ Availability & Implementation
 
 You can use CaFE on all major platforms.
 
-* Source code: https://github.org/HuiLiuCode/CaFE_Plugin
+* Source code: https://github.com/HuiLiuCode/CaFE_Plugin
 
 
 Documentation
 -----------------------------------
 
-* Manual: https://github.org/HuiLiuCode/CaFE_Plugin/doc/manual.pdf
+* Manual: https://github.com/HuiLiuCode/CaFE_Plugin/tree/master/doc/manual.pdf
 
 
 Installation
