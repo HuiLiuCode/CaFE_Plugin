@@ -1,6 +1,6 @@
 ############################################################################
 ## Name:         CaFE Plugin
-## Description:  Perform end-point free energy calcultions
+## Description:  Perform end-point free energy calculations
 ## Home page:    https://github.com/HuiLiuCode/CaFE_Plugin
 ## Version:      1.0
 ##
