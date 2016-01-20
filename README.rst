@@ -2,29 +2,35 @@
    :align: center
 
 
-INTRODUCTION
---------
+Introduction
+-----------------------------------
 
 CaFE (Calculation of Free Energy) is a VMD plugin for binding affinity
 prediction using end-point free energy methods.
 
 
-DOCUMENTATION
--------------
-
-* Manual: https://github.org/HuiLiuCode/CaFE_Plugin/doc/manual.pdf
-
-
-AVAILABILITY & IMPLEMENTATION
--------------
+Availability & Implementation
+-----------------------------------
 
 You can use CaFE on all major platforms.
 
 * Source code: https://github.org/HuiLiuCode/CaFE_Plugin
 
 
-LICENSE
--------
+Documentation
+-----------------------------------
+
+* Manual: https://github.org/HuiLiuCode/CaFE_Plugin/doc/manual.pdf
+
+
+Installation
+-----------------------------------
+
+Please see the user manual for details about installation.
+
+
+License
+-----------------------------------
 
 CaFE is freely available under the GNU General Public License. See LICENSE
 for more details.
