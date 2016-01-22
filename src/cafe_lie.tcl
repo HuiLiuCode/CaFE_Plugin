@@ -196,7 +196,7 @@ proc ::cafe::lie::lie { args } {
 
         set toptype [molinfo $currmol get filetype]
 
-        # chech topology type, currently NAMD fully supports AMBER and CHARMM/X-PLOR formats
+        # check topology type, currently NAMD fully supports AMBER and CHARMM/X-PLOR formats
         if { $toptype ne "psf" && $toptype ne "parm" && $toptype ne "parm7" } {
             show -err "Currently only AMBER- and CHARMM/X-PLOR-formatted topology files are supported"
         }
