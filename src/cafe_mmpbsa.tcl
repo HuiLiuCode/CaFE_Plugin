@@ -427,6 +427,13 @@ proc ::cafe::mmpbsa::mmpbsa { args } {
         set currmol [mol new $topfile type $toptype waitfor all]
     }
 
+    set toptype [molinfo $currmol get filetype]
+
+    # chech topology type, currently NAMD fully supports AMBER and CHARMM/X-PLOR formats
+    if { $toptype ne "psf" && $toptype ne "parm" && $toptype ne "parm7" } {
+        show -err "Currently only AMBER- and CHARMM/X-PLOR-formatted topology files are supported"
+    }
+
     # check selections
     if { $comsel eq "" } {
         show -err "Selection of complex must be specified"
@@ -453,7 +460,7 @@ proc ::cafe::mmpbsa::mmpbsa { args } {
     if { $pb } {
         if { $pb_rad eq "charmm" && ![llength $parfile] } {
             show -err "Need a CHARMM formatted parameter file for pb_rad charmm"
-        } elseif { $pb_rad eq "parm7" && ($toptype ne "auto" && $toptype ne "parm7") } {
+        } elseif { $pb_rad eq "parm7" && ($toptype ne "parm" && $toptype ne "parm7") } {
             show -err "Need an AMBER PARM7 file for pb_rad parm7"
         }
     }
@@ -461,7 +468,7 @@ proc ::cafe::mmpbsa::mmpbsa { args } {
     if { $sa } {
         if { $sa_rad eq "charmm" && ![llength $parfile] } {
             show -err "Need a CHARMM formatted parameter file for sa_rad charmm"
-        } elseif { $sa_rad eq "parm7" && ($toptype ne "auto" && $toptype ne "parm7") } {
+        } elseif { $sa_rad eq "parm7" && ($toptype ne "parm" && $toptype ne "parm7") } {
             show -err "Need an AMBER PARM7 file for sa_rad parm7"
         }
     }
@@ -499,11 +506,7 @@ proc ::cafe::mmpbsa::mmpbsa { args } {
     # delete old files and reload the new trajectory to save memory
     mol delete $currmol
 
-    if { $toptype eq "auto" } {
-        set currmol [mol new $topfile waitfor all]
-    } else {
-        set currmol [mol new $topfile type $toptype waitfor all]
-    }
+    set currmol [mol new $topfile type $toptype waitfor all]
 
     mol addfile $com_trj type dcd waitfor all
     show -info "Loaded [molinfo $currmol get numframes] frames for complex"

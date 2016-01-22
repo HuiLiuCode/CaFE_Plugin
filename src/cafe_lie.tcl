@@ -194,6 +194,13 @@ proc ::cafe::lie::lie { args } {
             set currmol [mol new $topfile type $toptype waitfor all]
         }
 
+        set toptype [molinfo $currmol get filetype]
+
+        # chech topology type, currently NAMD fully supports AMBER and CHARMM/X-PLOR formats
+        if { $toptype ne "psf" && $toptype ne "parm" && $toptype ne "parm7" } {
+            show -err "Currently only AMBER- and CHARMM/X-PLOR-formatted topology files are supported"
+        }
+
         # check selections
         if { $selstr eq "" } {
             show -err "Selection of ligand in the $name state should be specified"
@@ -253,11 +260,7 @@ proc ::cafe::lie::lie { args } {
     foreach name { bound free } topfile [list $topfile_bound $topfile_free] \
             first [list $first_bound $first_free] stride [list $stride_bound $stride_free] \
             selstr [list $ligsel_bound $ligsel_free] {
-        if { $toptype eq "auto" } {
-            set currmol [mol new $topfile waitfor all]
-        } else {
-            set currmol [mol new $topfile type $toptype waitfor all]
-        }
+        set currmol [mol new $topfile type $toptype waitfor all]
 
         set tmp_trj "_lie_${name}_tmp.dcd"
         mol addfile $tmp_trj type dcd waitfor all
