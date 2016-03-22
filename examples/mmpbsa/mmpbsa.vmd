@@ -1,0 +1,27 @@
+package require cafe 1.0
+
+mmpbsa -top       ../md/com.psf \
+       -trj       ../md/com.dcd \
+       -out       mmpbsa.log \
+       -par       ../toppar/par_all22_prot.prm \
+       -par       ../toppar/par_all36_cgenff.prm \
+       -par       ../toppar/toppar_water_ions_namd.str \
+       -par       ../toppar/lig.str \
+       -com       "segname PRO LIG" \
+       -rec       "segname PRO" \
+       -lig       "segname LIG" \
+       -first     0 \
+       -last      -1 \
+       -stride    1 \
+       -mm        1 \
+       -pb        2 \
+       -pb_exe    apbs \
+       -pb_rad    mparse \
+       -pb_bcfl   mdh \
+       -pb_chgm   spl2 \
+       -sa        1 \
+       -sa_rad    mparse \
+       -sa_gamma  0.00542 \
+       -sa_beta   0.92
+
+quit

@@ -156,6 +156,15 @@ proc ::cafe::lie::lie { args } {
                 -mm_exe {
                     set mm_exe $val
                 }
+                -alpha {
+                    set alpha [check_real $val "alpha"]
+                }
+                -beta {
+                    set beta [check_real $val "beta"]
+                }
+                -gamma {
+                    set gamma [check_real $val "gamma"]
+                }
                 default {
                     if { $key ni $validargs } {
                         show -err "Found unknown argument '$key'"

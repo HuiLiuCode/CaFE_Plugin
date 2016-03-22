@@ -1,0 +1,24 @@
+package require cafe 1.0
+
+lie -top_bound    ../md/com.psf \
+    -trj_bound    ../md/com.dcd \
+    -top_free     ../md/lig.psf \
+    -trj_free     ../md/lig.dcd \
+    -out          lie.log \
+    -par          ../toppar/par_all22_prot.prm \
+    -par          ../toppar/par_all36_cgenff.prm \
+    -par          ../toppar/toppar_water_ions_namd.str \
+    -par          ../toppar/lig.str \
+    -lig_bound    "segname LIG" \
+    -lig_free     "segname LIG" \
+    -first_bound  0 \
+    -last_bound   -1 \
+    -stride_bound 1 \
+    -first_free   0 \
+    -last_free    -1 \
+    -stride_free  1 \
+    -alpha        0.18 \
+    -beta         0.5 \
+    -gamma        0.0
+
+quit
