@@ -98,7 +98,7 @@ proc ::cafe::tools::check_nneg_int { s n } {
     if { [string is integer -strict $s] && $s >= 0 } {
         return $s
     } else {
-        show -err "Expected a nonnegtive integer for '$n' but got '$s'"
+        show -err "Expected a non-negative integer for '$n' but got '$s'"
     }
 }
 
@@ -122,7 +122,7 @@ proc ::cafe::tools::check_nneg_real { s n } {
     if { [string is double -strict $s] && $s >= 0 } {
         return $s
     } else {
-        show -err "Expected a non-negtive real for '$n' but got '$s'"
+        show -err "Expected a non-negative real for '$n' but got '$s'"
     }
 }
 

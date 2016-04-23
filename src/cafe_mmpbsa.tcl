@@ -601,7 +601,7 @@ proc ::cafe::mmpbsa::mmpbsa { args } {
     # *****************************************************
     # **************** Generate the Result ****************
     # *****************************************************
-    show -info "Generating result"
+    show -info "Generating the result"
     set start [clock seconds]
 
     set result [open $outfile w]
@@ -807,7 +807,7 @@ proc ::cafe::mmpbsa::run_namd { molid prefix selstr trajname } {
     return $result
 }
 
-# write a namd configuration file
+# write a NAMD configuration file
 # revised from namdenergy1.4
 proc ::cafe::mmpbsa::write_namd_conf { molid prefix selstr trajname } {
     variable toptype
@@ -1295,7 +1295,7 @@ proc ::cafe::mmpbsa::assign_radii_tan { molid } {
     show -err "Not implemented yet"
 }
 
-# Yamagishi et al (J Comp Chem 2014, 35, 2132-2139)
+# Yamagishi et al (J Comput Chem 2014, 35, 2132-2139)
 proc ::cafe::mmpbsa::assign_radii_yamagishi { molid } {
     show -err "Not implemented yet"
 }
@@ -1425,7 +1425,7 @@ proc ::cafe::mmpbsa::run_delphi { molid prefix selstr } {
     return $pb_list
 }
 
-# generate a PQR file for DelPhi calcultion
+# generate a PQR file for DelPhi calculation
 # DelPhi cannot read the PQR written by "animate write pqr"
 proc ::cafe::mmpbsa::write_pqr { sel fname } {
     set fp [open $fname w]
@@ -1440,7 +1440,7 @@ proc ::cafe::mmpbsa::write_pqr { sel fname } {
     close $fp
 }
 
-# generate a ligand size file for DelPhi calcultion
+# generate a ligand size file for DelPhi calculation
 proc ::cafe::mmpbsa::write_siz { molid rname fname } {
     set fp [open $fname w]
     puts $fp atom__res_radius_
@@ -1456,7 +1456,7 @@ proc ::cafe::mmpbsa::write_siz { molid rname fname } {
     close $fp
 }
 
-# generate a ligand charge file for DelPhi calcultion
+# generate a ligand charge file for DelPhi calculation
 proc ::cafe::mmpbsa::write_crg { molid rname fname } {
     set fp [open $fname w]
     puts $fp atom__resnumbc_charge_
@@ -1608,7 +1608,13 @@ proc ::cafe::mmpbsa::run_apbs { molid prefix selstr } {
         if { [file exists io.mc] } { file delete io.mc }
 
         set tmp_log ${tmp_prefix}.log
-        exec $pb_exe $tmp_prm > $tmp_log
+
+        # Some versions of APBS sometimes throw a "Vio_scanf" error as follows:
+        # "asc_getToken: Error occurred (bailing out).
+        #  Vio_scanf: Format problem with input."
+        # The error is harmless but will stop the calculations. So it should
+        # be ignored. The bug is found by an anonymous reviewer. Thank you!
+        exec -ignorestderr $pb_exe $tmp_prm > $tmp_log
 
         # the unit is kcal/mol
         set pb_out [parse_apbs $tmp_log -elec]

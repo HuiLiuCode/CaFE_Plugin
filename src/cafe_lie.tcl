@@ -289,7 +289,7 @@ proc ::cafe::lie::lie { args } {
     # *****************************************************
     # **************** Generate the Result ****************
     # *****************************************************
-    show -info "Generating result"
+    show -info "Generating the result"
     set start [clock seconds]
 
     set result [open $outfile w]
@@ -409,7 +409,7 @@ proc ::cafe::lie::run_namd { molid prefix selstr trajname topfile } {
     return $result
 }
 
-# write a namd configuration file
+# write a NAMD configuration file
 # revised from namdenergy1.4
 proc ::cafe::lie::write_namd_conf { molid prefix selstr trajname topfile } {
     variable toptype
